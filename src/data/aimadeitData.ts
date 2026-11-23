@@ -611,7 +611,7 @@ export const CONTACT_EMAILS = [
 ];
 
 export const SOCIAL_HANDLES = [
-  { platform: 'Instagram', handle: '@aimadeit.creative' },
+  { platform: 'Instagram', handle: '@aimadeit' },
   { platform: 'TikTok', handle: '@aimadeit.creative' },
   { platform: 'YouTube', handle: '@aimadeitcreativelab' },
   { platform: 'Facebook', handle: 'AIMADEIT AI Creative Lab' },
