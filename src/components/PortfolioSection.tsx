@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { ArrowUpRight, Maximize2, X } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Maximize2, X } from "lucide-react";
 import {
   PORTFOLIO_FILTERS,
   PORTFOLIO_PROJECTS,
   PortfolioProject,
-} from '../data/aimadeitData';
-import ResilientImage from './ResilientImage';
+} from "../data/aimadeitData";
+import ResilientImage from "./ResilientImage";
 
 interface PortfolioSectionProps {
   onRequestSimilar: (projectTitle: string) => void;
@@ -14,28 +14,28 @@ interface PortfolioSectionProps {
 export default function PortfolioSection({
   onRequestSimilar,
 }: PortfolioSectionProps) {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [activeFilter, setActiveFilter] = useState<string>("all");
   const [selectedProject, setSelectedProject] =
     useState<PortfolioProject | null>(null);
 
   const filteredProjects =
-    activeFilter === 'all'
+    activeFilter === "all"
       ? PORTFOLIO_PROJECTS
       : PORTFOLIO_PROJECTS.filter((p) => p.filterKey === activeFilter);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setSelectedProject(null);
       }
     };
     if (selectedProject) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
     }
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [selectedProject]);
 
@@ -54,9 +54,9 @@ export default function PortfolioSection({
               Ideas Made Visible.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-[#B9BEC7] sm:text-base">
-              Explore a world of creative possibilities across product advertising,
-              fashion visuals, commercial video, virtual characters, and social
-              media systems.
+              Explore a world of creative possibilities across product
+              advertising, fashion visuals, commercial video, virtual
+              characters, and social media systems.
             </p>
           </div>
 
@@ -83,8 +83,8 @@ export default function PortfolioSection({
                 onClick={() => setActiveFilter(filter.id)}
                 className={`min-h-10 rounded-lg px-4 py-2 text-xs font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00E5F2] whitespace-nowrap shrink-0 cursor-pointer ${
                   isActive
-                    ? 'bg-[#D99A3E] text-[#090909]'
-                    : 'border border-white/10 bg-[#141414] text-[#B9BEC7] hover:border-white/25 hover:text-[#F5F1E8]'
+                    ? "bg-[#D99A3E] text-[#090909]"
+                    : "border border-white/10 bg-[#141414] text-[#B9BEC7] hover:border-white/25 hover:text-[#F5F1E8]"
                 }`}
               >
                 {filter.label}
@@ -97,11 +97,11 @@ export default function PortfolioSection({
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-6">
           {filteredProjects.map((project, idx) => {
             const spanClass =
-              activeFilter === 'all'
+              activeFilter === "all"
                 ? idx < 2
-                  ? 'lg:col-span-3'
-                  : 'lg:col-span-2'
-                : 'lg:col-span-3';
+                  ? "lg:col-span-3"
+                  : "lg:col-span-2"
+                : "lg:col-span-3";
 
             return (
               <article
@@ -114,13 +114,13 @@ export default function PortfolioSection({
                   className="relative block w-full overflow-hidden bg-[#090909] text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00E5F2] cursor-pointer"
                   aria-label={`Inspect ${project.title} details`}
                 >
-                  <div className="aspect-[16/10] w-full overflow-hidden">
-                    <ResilientImage
+                  <div className="aspect-[10/16] w-full overflow-hidden">
+                    <iframe
                       src={project.image}
-                      alt={project.imageAlt}
                       title={project.title}
-                      className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                      containerClassName="h-full w-full"
+                      className="h-full w-full border-0"
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
                     />
                   </div>
                   <div
@@ -162,7 +162,10 @@ export default function PortfolioSection({
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#00E5F2] transition-colors hover:text-[#F5F1E8] whitespace-nowrap shrink-0 cursor-pointer"
                     >
                       <span>View Brief</span>
-                      <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      <ArrowUpRight
+                        className="h-3.5 w-3.5"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                 </div>
@@ -183,7 +186,7 @@ export default function PortfolioSection({
           </div>
           <button
             type="button"
-            onClick={() => onRequestSimilar('Custom AI Creative Campaign')}
+            onClick={() => onRequestSimilar("Custom AI Creative Campaign")}
             className="inline-flex min-h-11 items-center justify-center rounded-lg border border-[#D99A3E]/60 bg-[#090909] px-5 py-2.5 text-sm font-semibold text-[#F5D28A] transition-colors hover:bg-[#D99A3E] hover:text-[#090909] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00E5F2] whitespace-nowrap shrink-0 cursor-pointer"
           >
             Contact Us About a Project
@@ -214,14 +217,18 @@ export default function PortfolioSection({
             </button>
 
             <div className="grid grid-cols-1 lg:grid-cols-12">
-              <div className="bg-[#090909] lg:col-span-7">
-                <ResilientImage
+              <div className="flex items-center justify-center bg-[#141414] lg:col-span-7">
+                <div className="aspect-[9/16] max-h-[480px] w-full max-w-[320px] overflow-hidden">
+                <iframe
                   src={selectedProject.image}
-                  alt={selectedProject.imageAlt}
                   title={selectedProject.title}
-                  className="h-full max-h-[480px] w-full object-cover"
-                  containerClassName="h-full min-h-[280px] w-full"
+                  className="h-full w-full border-0"
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
                 />
+                </div>
               </div>
 
               <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5">
@@ -264,7 +271,7 @@ export default function PortfolioSection({
 
                   <div className="mt-5 border-t border-white/10 pt-4">
                     <p className="text-xs text-[#B9BEC7]">
-                      Creative Style:{' '}
+                      Creative Style:{" "}
                       <span className="text-[#F5F1E8]">
                         {selectedProject.creativeStyle}
                       </span>
