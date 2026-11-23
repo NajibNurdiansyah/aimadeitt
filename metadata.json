@@ -1,0 +1,6 @@
+{
+  "name": "AIMADEIT — AI Creative Lab",
+  "description": "AIMADEIT is an AI Creative Lab specializing in AI-generated videos, photorealistic images, digital advertisements, virtual characters, product promotional videos, and social media content creation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
