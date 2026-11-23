@@ -219,6 +219,7 @@ export default function PortfolioSection({
             <div className="grid grid-cols-1 lg:grid-cols-12">
               <div className="flex items-center justify-center bg-[#141414] lg:col-span-7">
                 <div className="aspect-[9/16] max-h-[480px] w-full max-w-[320px] overflow-hidden">
+                {/* tambah iframe */}
                 <iframe
                   src={selectedProject.image}
                   title={selectedProject.title}
