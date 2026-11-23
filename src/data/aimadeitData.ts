@@ -604,7 +604,7 @@ export const OPERATING_HOURS: OperatingHour[] = [
 ];
 
 export const CONTACT_EMAILS = [
-  { label: 'General Inquiries', email: 'hello@aimadeit.example' },
+  { label: 'General Inquiries', email: 'aimadeit@gmail.com' },
   { label: 'Project Inquiries', email: 'projects@aimadeit.example' },
   { label: 'Business Partnerships', email: 'partnerships@aimadeit.example' },
   { label: 'Customer Support', email: 'support@aimadeit.example' },
