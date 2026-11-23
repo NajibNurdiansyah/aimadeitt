@@ -10,6 +10,11 @@ import ResilientImage from "./ResilientImage";
 interface PortfolioSectionProps {
   onRequestSimilar: (projectTitle: string) => void;
 }
+const isVideoEmbed = (url: string) => {
+  return /youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com|player\.|embed|\.mp4|\.webm/i.test(
+    url,
+  );
+};
 
 export default function PortfolioSection({
   onRequestSimilar,
@@ -114,14 +119,22 @@ export default function PortfolioSection({
                   className="relative block w-full overflow-hidden bg-[#090909] text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00E5F2] cursor-pointer"
                   aria-label={`Inspect ${project.title} details`}
                 >
-                  <div className="aspect-[10/16] w-full overflow-hidden">
-                    <iframe
-                      src={project.image}
-                      title={project.title}
-                      className="h-full w-full border-0"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                    />
+                  <div className="aspect-[16/10] w-full overflow-hidden">
+                    {isVideoEmbed(project.image) ? (
+                      <iframe
+                        src={project.image}
+                        title={project.title}
+                        className="pointer-events-none h-full w-full border-0"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <ResilientImage
+                        src={project.image}
+                        alt={project.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    )}
                   </div>
                   <div
                     aria-hidden="true"
@@ -217,18 +230,28 @@ export default function PortfolioSection({
             </button>
 
             <div className="grid grid-cols-1 lg:grid-cols-12">
-              <div className="flex items-center justify-center bg-[#141414] lg:col-span-7">
-                <div className="aspect-[9/16] max-h-[480px] w-full max-w-[320px] overflow-hidden">
-                <iframe
-                  src={selectedProject.image}
-                  title={selectedProject.title}
-                  className="h-full w-full border-0"
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer"
-                />
-                </div>
+              <div className="flex items-center justify-center bg-[#090909] p-4 lg:col-span-7">
+                {isVideoEmbed(selectedProject.image) ? (
+                  <div className="aspect-[9/16] max-h-[520px] w-full max-w-[520px] overflow-hidden rounded-xl">
+                    <iframe
+                      src={selectedProject.image}
+                      title={selectedProject.title}
+                      className="h-full w-full border-0"
+                      allow="autoplay; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex max-h-[540px] w-full items-center justify-center overflow-hidden rounded-xl">
+                    <ResilientImage
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      className="max-h-[540px] w-auto object-contain"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-5">
