@@ -340,7 +340,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
   {
     id: 'social-media-content-system',
     index: '05',
-    title: 'Video Baru',
+    title: 'Social Media Content System',
     category: 'Social Media Content Creation',
     filterKey: 'social',
     concept:
